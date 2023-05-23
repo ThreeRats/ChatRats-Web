@@ -63,7 +63,7 @@ export default {
                 return new Promise(resolve => setTimeout(resolve, time))
             }
 
-            reqSendChat(this.base64Image).then(async (response) => {
+            reqSendChat(this.textarea).then(async (response) => {
                 let data = response.data;
                 console.log(response);
                 const loading = ElLoading.service({
