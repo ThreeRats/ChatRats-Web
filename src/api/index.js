@@ -29,10 +29,10 @@ export const reqLogin = (username, password) => {
 // }
 
 // 向服务器发送图片的窗口
-export const reqSendImg = (img) => {
+export const reqSendChat = (chatText) => {
     let params = new URLSearchParams();
-    params.append('img', img);
-    return requests.post('/sendImg', params);
+    params.append('chatText', chatText);
+    return requests.post('/sendChat', params);
 }
 
 export const reqGetProcess = () => {

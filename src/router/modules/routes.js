@@ -11,14 +11,14 @@ const res = {
         "menus": [
             {
                 "id": "1",
-                "label": "上传图片",
-                "icon": "PictureFilled",
-                "path": "/update",
-                "component": "/page-update"
+                "label": "开始对话",
+                "icon": "ChatDotRound",
+                "path": "/chats",
+                "component": "/page-chats"
             },
             {
                 "id": "2",
-                "label": "查看结果",
+                "label": "历史对话",
                 "icon": "Tickets",
                 "path": "/result",
                 "component": "/page-result"
