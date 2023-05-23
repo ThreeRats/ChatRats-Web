@@ -9,7 +9,6 @@
                     </div>
                     <div class="scrollbar-user-item" v-else>{{ chat_list[i - 1]['text'] }}</div>
                 </div>
-
             </el-scrollbar>
             <el-input
                     v-model="textarea"
@@ -27,11 +26,10 @@
                 </el-button>
 
             </div>
-            <el-button v-if="chat_list.length>=9" type="info" @click="save_history_chats"
+            <el-button v-if="chat_list.length>=17" type="info" @click="save_history_chats"
                        style="width: 100px;margin: 10px 46%;">
                 新的对话
             </el-button>
-
         </el-card>
     </div>
 </template>
@@ -104,7 +102,7 @@ export default {
                     })
                 }
                 loading.close();
-                if (this.chat_list.length >= 9) {
+                if (this.chat_list.length >= 17) {
                     ElMessage({
                         message: '当前对话轮数已达上限，开始新的对话吧~',
                         type: 'warning',
