@@ -33,7 +33,7 @@ const globalCfg = getCurrentInstance().appContext.config.globalProperties
 const name = 'vel-frame-welcome'
 const githubUrl = 'https://github.com/ThreeRats'
 const qdUrl = 'https://github.com/ThreeRats/ChatRats-Web'
-const hdUrl = 'https://github.com/ThreeRats/CV-object-retrieval'
+const hdUrl = 'https://github.com/ThreeRats/ChatRats'
 const avatarUrl = envConfig.baseUrl() + '/static/imgs/jimeng.webp'
 
 // 用户名称
