@@ -34,7 +34,7 @@ const name = 'vel-frame-welcome'
 const githubUrl = 'https://github.com/ThreeRats'
 const qdUrl = 'https://github.com/ThreeRats/ChatRats-Web'
 const hdUrl = 'https://github.com/ThreeRats/ChatRats'
-const avatarUrl = envConfig.baseUrl() + '/static/imgs/jimeng.webp'
+const avatarUrl = '/static/imgs/jimeng.webp'
 
 // 用户名称
 const userNick = computed(() => globalCfg.$store.getters[Constant.USERINFO_USER_NICK_GET_KEY])
