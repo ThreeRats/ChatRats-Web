@@ -50,6 +50,7 @@ export default {
       chat_list: [{
         text: '您好~我是ChatRat，您的智能AI小助手。欢迎向我提问喵~',
         type: 'ai',
+        loading: '',
       }],
     };
   },
@@ -61,15 +62,15 @@ export default {
         return new Promise(resolve => setTimeout(resolve, time))
       }
 
+      this.loading = ElLoading.service({
+        lock: true,
+        text: 'Loading',
+        background: 'rgba(0, 0, 0, 0.7)',
+      })
       reqSendChat(this.textarea).then(async (response) => {
-
         let data = response.data;
         console.log(response.data);
-        const loading = ElLoading.service({
-          lock: true,
-          text: 'Loading',
-          background: 'rgba(0, 0, 0, 0.7)',
-        })
+
         this.chat_list.push({
           text: this.textarea,
           type: 'user',
@@ -107,7 +108,7 @@ export default {
             type: 'success',
           })
         }
-        loading.close();
+        this.loading.close();
         if (this.chat_list.length >= 17) {
           ElMessage({
             message: '当前对话轮数已达上限，开始新的对话吧~',
