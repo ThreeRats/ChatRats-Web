@@ -29,9 +29,11 @@ export const reqLogin = (username, password) => {
 // }
 
 // 向服务器发送图片的窗口
-export const reqSendChat = (chatText) => {
+export const reqSendChat = (chatText, type = 0) => {
     let params = new URLSearchParams();
     params.append('chatText', chatText);
+    if (type !== 0)
+        params.append('type', type);
     return requests.post('/sendChat', params);
 }
 

@@ -1,5 +1,13 @@
 <template>
   <div class="page">
+    <div class="btn-group">
+      <el-button v-if="now_type===1" type="success" round>PT方法</el-button>
+      <el-button v-else type="info" round @click="change2PT">PT方法</el-button>
+      <el-button v-if="now_type===2" type="success" round>Lora方法</el-button>
+      <el-button v-else type="info" round @click="change2Lora">Lora方法</el-button>
+      <el-button v-if="now_type===3" type="success" round>芝士问答</el-button>
+      <el-button v-else type="info" round @click="change2QA">芝士问答</el-button>
+    </div>
     <el-card shadow="never" class="vel_card_override">
       <el-scrollbar height="450px">
         <div v-for="i in chat_list.length " :key="i">
@@ -12,12 +20,12 @@
       </el-scrollbar>
       <el-input
           v-model="textarea"
-          maxlength="30"
+          maxlength="500"
           placeholder="聊点什么吧~"
           show-word-limit
           type="textarea"
           style="margin-top: 40px"
-          :input-style="{fontFamily: 'Microsoft YaHei', fontSize: '18px'}"
+          :input-style="{fontFamily: 'Microsoft YaHei', fontSize: '15px'}"
       />
       <div v-if="textarea.length>0 && chat_list.length<17">
         <el-button type="success" @click="submitChat"
@@ -46,12 +54,13 @@ export default {
   data() {
     return {
       textarea: "",
-
+      now_type: 1,
+      sent_type: true,
       chat_list: [{
         text: '您好~我是ChatRat，您的智能AI小助手。欢迎向我提问喵~',
         type: 'ai',
-        loading: '',
       }],
+      loading: '',
     };
   },
 
@@ -67,7 +76,12 @@ export default {
         text: 'Loading',
         background: 'rgba(0, 0, 0, 0.7)',
       })
-      reqSendChat(this.textarea).then(async (response) => {
+      let type = 0;
+      if (this.sent_type === true) {
+        this.sent_type = false;
+        type = this.now_type;
+      }
+      reqSendChat(this.textarea, type).then(async (response) => {
         let data = response.data;
         console.log(response.data);
 
@@ -138,7 +152,8 @@ export default {
 
     },
     save_history_chats() {
-      this.$store.state.history_chats_list.push(this.chat_list)
+      this.$store.state.history_chats_list.push(this.chat_list);
+      this.sent_type = true;
       this.chat_list = [{
         text: '让我们开始新的对话吧~',
         type: 'ai',
@@ -148,6 +163,42 @@ export default {
         type: 'success',
       })
 
+    },
+    change2PT() {
+      this.now_type = 1;
+      this.sent_type = true;
+      this.chat_list = [{
+        text: '您好~我是ChatRat，您的智能AI小助手。欢迎向我提问喵~',
+        type: 'ai',
+      }]
+      ElMessage({
+        message: '成功切换为PT方法~',
+        type: 'success',
+      })
+    },
+    change2Lora() {
+      this.now_type = 2;
+      this.sent_type = true;
+      this.chat_list = [{
+        text: '您好~我是ChatRat，您的智能AI小助手。欢迎向我提问喵~',
+        type: 'ai',
+      }]
+      ElMessage({
+        message: '成功切换为Lora方法~',
+        type: 'success',
+      })
+    },
+    change2QA() {
+      this.now_type = 3;
+      this.sent_type = true;
+      this.chat_list = [{
+        text: '您好~我是ChatRat，您的智能AI小助手。欢迎向我提问喵~',
+        type: 'ai',
+      }]
+      ElMessage({
+        message: '成功切换为芝士问答~',
+        type: 'success',
+      })
     },
   }
 }
@@ -160,6 +211,13 @@ export default {
 
 .vel_card_override {
   height: calc(100vh - 90px - 20px - 20px - 2px);
+}
+
+.btn-group {
+  display: flex; /* 使用flex布局 */
+  justify-content: space-around; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  margin-bottom: 10px;
 }
 
 .scrollbar-ai-item {
