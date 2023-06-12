@@ -3,8 +3,8 @@
     <div class="btn-group">
       <el-button v-if="now_type===1" type="success" round>PT方法</el-button>
       <el-button v-else type="info" round @click="change2PT">PT方法</el-button>
-      <el-button v-if="now_type===2" type="success" round>Lora方法</el-button>
-      <el-button v-else type="info" round @click="change2Lora">Lora方法</el-button>
+      <el-button v-if="now_type===2" type="success" round>chatglm</el-button>
+      <el-button v-else type="info" round @click="change2Chatglm">chatglm</el-button>
       <el-button v-if="now_type===3" type="success" round>芝士问答</el-button>
       <el-button v-else type="info" round @click="change2QA">芝士问答</el-button>
     </div>
@@ -172,11 +172,11 @@ export default {
         type: 'ai',
       }]
       ElMessage({
-        message: '成功切换为PT方法~',
+        message: '成功切换为PT微调版本~',
         type: 'success',
       })
     },
-    change2Lora() {
+    change2Chatglm() {
       this.now_type = 2;
       this.sent_type = true;
       this.chat_list = [{
@@ -184,7 +184,7 @@ export default {
         type: 'ai',
       }]
       ElMessage({
-        message: '成功切换为Lora方法~',
+        message: '成功切换为chatglm~',
         type: 'success',
       })
     },
